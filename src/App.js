@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [hasName, setHasName] = useState("");
+
+  function handleOptionChange(e) {
+    setHasName(e.target.value);
+
+    // This console log seems to be always a step behind when selecting the radio buttons
+    console.log(hasName);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Do you have a name?</h1>
+      <form>
+        <label>
+          <input
+            type="radio"
+            name="name"
+            value="yes"
+            onChange={handleOptionChange}
+            checked={hasName === "yes"}
+          />
+          Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="name"
+            value="no"
+            onChange={handleOptionChange}
+            checked={hasName === "no"}
+          />
+          No
+        </label>
+      </form>
     </div>
   );
 }
